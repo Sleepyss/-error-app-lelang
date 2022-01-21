@@ -15,12 +15,25 @@ const routes = [
         path: '/',
         name: 'dashboard',
         component: Dashboard,
+        meta : {
+            requiresAuth : true
+        }
     },
 ]
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
+})
+router.beforeEach((to, from, next) => {
+    if(to.matched.some((record) => record.meta.requiresAuth)) {
+        if(localStorage.getItem('auth')) {
+            next()
+        } else {
+            next('/login')
+        }
+    }
+    next()
 })
 
 export default router

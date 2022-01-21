@@ -6,7 +6,7 @@
                 <navbar-component></navbar-component>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Selamat datang, {{level}}</h1>
                 </div>
             </div>
 
@@ -14,3 +14,17 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {      
+            level : '',
+        }
+    },
+    created() {
+        var user = JSON.parse(this.$store.state.datauser)
+        this.level = user.level
+    }
+}
+</script>
