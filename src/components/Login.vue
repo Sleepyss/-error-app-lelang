@@ -10,7 +10,7 @@
                             </div>
                             <form class="user" @submit.prevent="login">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" placeholder="Masukkan username" v-model="account.name">
+                                    <input type="text" class="form-control form-control-user" placeholder="Masukkan username" v-model="account.username">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user" placeholder="Masukkan password" v-model="account.password">

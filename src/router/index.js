@@ -4,6 +4,10 @@ import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Dashboard from '../components/Dashboard.vue'
 
+//member
+import IndexMember from '../components/Member/Index.vue'
+import TambahMember from '../components/Member/Tambah.vue'
+
 Vue.use(VueRouter)
 const routes = [
     {
@@ -15,6 +19,22 @@ const routes = [
         path: '/',
         name: 'dashboard',
         component: Dashboard,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/user',
+        name: 'indexmember',
+        component: IndexMember,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/user/add',
+        name: 'tambahmember',
+        component: TambahMember,
         meta : {
             requiresAuth : true
         }
