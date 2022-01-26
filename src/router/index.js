@@ -7,6 +7,8 @@ import Dashboard from '../components/Dashboard.vue'
 //member
 import IndexMember from '../components/Member/Index.vue'
 import TambahMember from '../components/Member/Tambah.vue'
+import EditMember from '../components/Member/Edit.vue'
+import DetailMember from '../components/Member/Detail.vue'
 
 Vue.use(VueRouter)
 const routes = [
@@ -39,6 +41,22 @@ const routes = [
             requiresAuth : true
         }
     },
+    {
+        path: '/user/edit/:id',
+        name: 'editmember',
+        component : EditMember,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/user/detail/:id',
+        name: 'detailmember',
+        component: DetailMember,
+        meta : {
+            requiresAuth : true
+        }
+    }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -41,10 +41,10 @@
                                                     <td>{{ u.username }}</td>
                                                     <td>{{ u.level }}</td>
                                                     <td>
-                                                        <router-link :to="{ name : 'show', params : {id : u.id }}" class="btn btn-success btn-circle">
+                                                        <router-link :to="{ name : 'detailmember', params : {id : u.id }}" class="btn btn-success btn-circle">
                                                             <i class="far fa-eye"></i>
                                                         </router-link>
-                                                        <router-link :to="{ name : 'update', params : {id : u.id }}" class="btn btn-warning btn-circle">
+                                                        <router-link :to="{ name : 'editmember', params : {id : u.id }}" class="btn btn-warning btn-circle">
                                                             <i class="fas fa-pen"></i>
                                                         </router-link>
                                                         <button type="button" @click="hapus(u.id)" class="btn btn-danger btn-circle">
@@ -75,7 +75,7 @@ export default {
         }
     },
     created() {
-        this.axios.get('http://localhost/lelangOn/public/api/user/show').then(res => {
+        this.axios.get('http://localhost/lelangOn/public/api/user').then(res => {
             this.users = res.data
         })
     },

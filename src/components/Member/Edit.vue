@@ -17,14 +17,6 @@
                                         <input type="text" class="form-control" v-model="users.nama">
                                     </div>
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" v-model="users.username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="text" class="form-control" v-model="users.password">
-                                    </div>
-                                    <div class="form-group">
                                         <label>Alamat</label>
                                         <textarea rows="4" class="form-control" v-model="users.alamat"></textarea>
                                     </div>
@@ -33,10 +25,16 @@
                                             <label>Jenis Kelamin</label>
                                         </div>
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label v-if="users.jenis_kelamin == 'L'" class="btn btn-secondary">
+                                            <label v-if="users.jenis_kelamin == 'L'" class="btn btn-secondary active">
                                                 <input type="radio" value="L" v-model="users.jenis_kelamin"> Laki-laki
                                             </label>
-                                            <label class="btn btn-secondary">
+                                            <label v-else class="btn btn-secondary">
+                                                <input type="radio" value="L" v-model="users.jenis_kelamin"> Laki-laki
+                                            </label>
+                                            <label v-if="users.jenis_kelamin == 'P'" class="btn btn-secondary active">
+                                                <input type="radio" value="P" v-model="users.jenis_kelamin"> Perempuan
+                                            </label>
+                                            <label v-else class="btn btn-secondary">
                                                 <input type="radio" value="P" v-model="users.jenis_kelamin"> Perempuan
                                             </label>
                                         </div>
@@ -44,22 +42,6 @@
                                     <div class="form-group">
                                         <label>Nomor Telepon</label>
                                         <input type="text" class="form-control" v-model="users.telephone">
-                                    </div>
-                                    <div class="form-group">
-                                        <div>
-                                            <label>Level</label>
-                                        </div>
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label class="btn btn-secondary">
-                                                <input type="radio" value="admin" v-model="users.level"> Admin
-                                            </label>
-                                            <label class="btn btn-secondary">
-                                                <input type="radio" value="petugas" v-model="users.level"> Petugas
-                                            </label>
-                                            <label class="btn btn-secondary">
-                                                <input type="radio" value="masyarakat" v-model="users.level"> Masyarakat
-                                            </label>
-                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-success btn-block">Simpan</button>
                                 </form>
@@ -72,3 +54,25 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            users: {}
+        }
+    },
+    created() {
+        this.axios.get(`http://localhost/lelangOn/public/api/user/show/${this.$route.params.id}`).then((res) => {
+            this.users = res.data
+        })
+    },
+    methods : {
+        edit() {
+            this.axios.put(`http://localhost/lelangOn/public/api/user/update/${this.$route.params.id}`,this.users).then(() => {
+                this.$router.push('/user')
+            }).catch(err => console.log(err))
+        }
+    }
+}
+</script>
