@@ -21,7 +21,7 @@
         <li v-if="isAdmin" class="nav-item">
             <router-link to="/user" class="nav-link" href="index.html">
             <i class="fas fa-users"></i>
-            <span>Member</span>
+            <span>Users</span>
             </router-link>
         </li>
         <li v-if="isAdmin||isPetugas" class="nav-item">
@@ -30,7 +30,7 @@
             <span>Barang</span>
             </router-link>
         </li>
-        <li v-if="isAdmin||isMasyarakat" class="nav-item">
+        <li v-if="isAdmin||isMasyarakat||isPetugas" class="nav-item">
             <router-link to="/transaksi" class="nav-link" href="index.html">
             <i class="fas fa-file-invoice-dollar"></i>
             <span>Transaksi</span>
@@ -64,3 +64,4 @@ export default {
     }
 }
 </script>
+

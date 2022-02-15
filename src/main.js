@@ -5,10 +5,13 @@ import store from './store'
 
 import VueAxios from 'vue-axios'
 import axios from 'axios'
+import VueHtml2pdf from 'vue-html2pdf'
 
 axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth");
 
 Vue.use(VueAxios, axios)
+Vue.use(require('vue-moment'))
+Vue.use(VueHtml2pdf)
 
 Vue.component('sidebar-component',
 require('./components/template/Sidebar.vue').default);

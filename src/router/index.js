@@ -10,6 +10,11 @@ import TambahMember from '../components/Member/Tambah.vue'
 import EditMember from '../components/Member/Edit.vue'
 import DetailMember from '../components/Member/Detail.vue'
 
+//transaksi
+import IndexTransaksi from '../components/Transaksi/Index.vue'
+import TambahTransaksi from '../components/Transaksi/Tambah.vue'
+import EditTransaksi from '../components/Transaksi/Edit.vue'
+
 Vue.use(VueRouter)
 const routes = [
     {
@@ -56,7 +61,31 @@ const routes = [
         meta : {
             requiresAuth : true
         }
-    }
+    },
+    {
+        path: '/transaksi',
+        name: 'indextransaksi',
+        component: IndexTransaksi,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/transaksi/edit/:id',
+        name: 'edittransaksi',
+        component: EditTransaksi,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/transaksi/tambah',
+        name: 'tambahtransaksi',
+        component: TambahTransaksi,
+        meta : {
+            requiresAuth : true
+        }
+    },
 ]
 const router = new VueRouter({
     mode: 'history',
