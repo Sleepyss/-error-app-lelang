@@ -15,6 +15,17 @@
 
 <script>
 export default {
+    created(){
+        this.axios.get('http://localhost/lelangOn/public/api/login/check').then((res) => {
+            console.log(res.data)
+            if (!(res.data.success)) {
+                this.$store.commit('clearToken')
+                this.$store.commit('clearUser')
+                this.$swal("Error","Sesi Anda sudah habis", "error")
+                this.$router.push('/login')
+            }
+        })
+    },
     methods : {
         logout() {
             this.axios.post('http://localhost/lelangOn/public/api/logout').then( () => {

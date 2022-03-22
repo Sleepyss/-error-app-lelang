@@ -16,14 +16,20 @@
                                         <div class="form-group">
                                             <label>Users</label>
                                             <select v-model="transaksi.id_masyarakat">
-                                                <option v-for="(m, index) in masyarakat" :key="index" value="m.id_masyarakat">
+                                                <option v-for="(m, index) in masyarakat" :key="index" :value="m.id_masyarakat">
                                                     {{m.nama_masyarakat}}
                                                 </option>
                                             </select>
                                             <label>ID Lelang</label>
                                             <select v-model="transaksi.id_lelang">
-                                                <option v-for="(l, index) in lelang" :key="index" value="l.id_lelang">
+                                                <option v-for="(l, index) in lelang" :key="index" :value="l.id_lelang">
                                                     {{l.id_lelang}}
+                                                </option>
+                                            </select>
+                                            <label>ID Barang</label>
+                                            <select v-model="transaksi.id_barang">
+                                                <option v-for="(b, index) in barang" :key="index" :value="b.id_barang">
+                                                    {{b.id_barang}}
                                                 </option>
                                             </select>
                                         </div>
@@ -47,6 +53,7 @@ export default {
             masyarakat : {},
             lelang : {},
             transaksi : {},
+            barang : {},
         }
     },
     created() {
@@ -54,7 +61,10 @@ export default {
             this.masyarakat = res.data
         }).catch((err) => console.log(err))
         this.axios.get('http://localhost/lelangOn/public/api/lelang').then(res => {
-            this.lelang = res.data
+            this.lelang = res.data.data
+        }).catch((err) => console.log(err))
+        this.axios.get('http://localhost/lelangOn/public/api/barang').then(res => {
+            this.barang = res.data
         }).catch((err) => console.log(err))
     },
     methods : {

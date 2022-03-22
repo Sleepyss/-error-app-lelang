@@ -6,13 +6,13 @@
                 <navbar-component></navbar-component>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Data Member</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Lelang</h1>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <router-link to="/user/add" class="btn btn-info btn-icon-split">
+                                        <router-link to="/lelang/add" class="btn btn-info btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-plus"></i>
                                         </span>
@@ -22,32 +22,34 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Nama</th>
-                                                    <th>Alamat</th>
-                                                    <th>Jenis Kelamin</th>
-                                                    <th>Nomor Telephone</th>
-                                                    <th>Username</th>
-                                                    <th>Level</th>
+                                                    <th>ID Lelang</th>
+                                                    <th>Nama Barang</th>
+                                                    <th>Nama Petugas</th>
+                                                    <th>Tanggal Lelang</th>
+                                                    <th>Harga Akhir</th>
+                                                    <th>Nama Masyarakat</th>
+                                                    <th>Status</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(u, index) in users" :key="index">
+                                                <tr v-for="(l, index) in lelang" :key="index">
                                                     <td>{{ index + 1 }}</td>
-                                                    <td>{{ u.nama }}</td>
-                                                    <td>{{ u.alamat }}</td>
-                                                    <td>{{ u.jenis_kelamin }}</td>
-                                                    <td>{{ u.telephone }}</td>
-                                                    <td>{{ u.username }}</td>
-                                                    <td>{{ u.level }}</td>
+                                                    <td>{{ l.id_lelang }}</td>
+                                                    <td>{{ l.nama_barang }}</td>
+                                                    <td>{{ l.nama }}</td>
+                                                    <td>{{ l.tgl_lelang }}</td>
+                                                    <td>{{ l.harga_akhir }}</td>
+                                                    <td>{{ l.nama_masyarakat }}</td>
                                                     <td>
-                                                        <router-link :to="{ name : 'detailmember', params : {id : u.id }}" class="btn btn-success btn-circle">
+                                                        <span v-if="l.status == 'berlangsung'" class="badge bg-success text-light">Berlangsung</span>
+                                                        <span v-if="l.status == 'berhenti'" class="badge bg-danger text-dark">Berhenti</span>
+                                                    </td>
+                                                    <td>
+                                                        <router-link :to="{ name : 'detaillelang', params : {id : l.id_lelang }}" class="btn btn-success btn-circle">
                                                             <i class="far fa-eye"></i>
                                                         </router-link>
-                                                        <router-link :to="{ name : 'editmember', params : {id : u.id }}" class="btn btn-warning btn-circle">
-                                                            <i class="fas fa-pen"></i>
-                                                        </router-link>
-                                                        <button type="button" @click="hapus(u.id)" class="btn btn-danger btn-circle">
+                                                        <button type="button" @click="hapus(l.id_lelang)" class="btn btn-danger btn-circle">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </td>
@@ -71,19 +73,20 @@
 export default {
     data() {
         return {
-            users : {}
+            lelang : {},
         }
     },
     created() {
-        this.axios.get('http://localhost/lelangOn/public/api/user').then(res => {
-            this.users = res.data
-        })
+        this.axios.get('http://localhost/lelangOn/public/api/lelang').then(res => {
+            this.lelang = res.data.data
+        }).catch(err => console.log(err))
+
     },
     methods : {
         hapus(id) {
-            this.axios.delete(`http://localhost/lelangOn/public/api/user/delete/${id}`).then(() => {
-                let i = this.users.map(item => item.id).indexOf(id)
-                this.users.splice(i, 1)
+            this.axios.delete(`http://localhost/lelangOn/public/api/lelang/delete/${id}`).then(() => {
+                let i = this.lelang.map(item => item.id_lelang).indexOf(id)
+                this.lelang.splice(i, 1)
             })
         }
     }

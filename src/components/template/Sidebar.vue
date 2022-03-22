@@ -26,8 +26,14 @@
         </li>
         <li v-if="isAdmin||isPetugas" class="nav-item">
             <router-link to="/barang" class="nav-link" href="index.html">
-            <i class="fas fa-tshirt"></i>
-            <span>Barang</span>
+            <i class="fas fa-box"></i>
+            <span>Data Barang</span>
+            </router-link>
+        </li>
+        <li v-if="isPetugas" class="nav-item">
+            <router-link to="/lelang" class="nav-link" href="index.html">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Data Lelang</span>
             </router-link>
         </li>
         <li v-if="isAdmin||isMasyarakat||isPetugas" class="nav-item">

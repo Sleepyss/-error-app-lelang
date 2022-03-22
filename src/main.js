@@ -3,15 +3,18 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import VueAxios from 'vue-axios'
-import axios from 'axios'
-import VueHtml2pdf from 'vue-html2pdf'
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+import VueHtml2pdf from 'vue-html2pdf';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth");
 
 Vue.use(VueAxios, axios)
 Vue.use(require('vue-moment'))
 Vue.use(VueHtml2pdf)
+Vue.use(VueSweetalert2)
 
 Vue.component('sidebar-component',
 require('./components/template/Sidebar.vue').default);

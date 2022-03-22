@@ -76,7 +76,7 @@ export default {
     },
     created() {
         this.axios.get('http://localhost/lelangOn/public/api/transaksi').then(res => {
-            this.transaksi = res.data
+            this.transaksi = res.data.data
         }).catch(err => console.log(err))
     },
     methods : {

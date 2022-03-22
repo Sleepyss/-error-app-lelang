@@ -15,6 +15,17 @@ import IndexTransaksi from '../components/Transaksi/Index.vue'
 import TambahTransaksi from '../components/Transaksi/Tambah.vue'
 import EditTransaksi from '../components/Transaksi/Edit.vue'
 
+//barang
+import IndexBarang from '../components/Barang/Index.vue'
+import TambahBarang from '../components/Barang/Tambah.vue'
+import EditBarang from '../components/Barang/Edit.vue'
+import DetailBarang from '../components/Barang/Detail.vue'
+
+//lelang
+import IndexLelang from '../components/Lelang/Index.vue'
+import TambahLelang from '../components/Lelang/Tambah.vue'
+import DetailLelang from '../components/Lelang/Detail.vue'
+
 Vue.use(VueRouter)
 const routes = [
     {
@@ -62,6 +73,7 @@ const routes = [
             requiresAuth : true
         }
     },
+    // Transaksi
     {
         path: '/transaksi',
         name: 'indextransaksi',
@@ -82,6 +94,63 @@ const routes = [
         path: '/transaksi/tambah',
         name: 'tambahtransaksi',
         component: TambahTransaksi,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    // Barang
+    {
+        path: '/barang',
+        name: 'indexbarang',
+        component: IndexBarang,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/barang/tambah',
+        name: 'tambahbarang',
+        component: TambahBarang,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/barang/edit/:id',
+        name: 'editbarang',
+        component: EditBarang,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/barang/detail/:id',
+        name: 'detailbarang',
+        component: DetailBarang,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/lelang',
+        name: 'indexlelang',
+        component: IndexLelang,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/lelang/add',
+        name: 'tambahlelang',
+        component: TambahLelang,
+        meta : {
+            requiresAuth : true
+        }
+    },
+    {
+        path: '/lelang/detail/:id',
+        name: 'detaillelang',
+        component: DetailLelang,
         meta : {
             requiresAuth : true
         }
